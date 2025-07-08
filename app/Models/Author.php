@@ -15,12 +15,9 @@ class Author extends Model
         "about_author",
         "cv",
         "image",
-        "news_id"
+      
      ];
 
-     protected $casts=[
-        "news_id"=>"array"
-     ];
 
 
      public function setNameAttribute($value){

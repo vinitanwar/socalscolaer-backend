@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text("about_author");
             $table->string("cv")->nullable();
             $table->string("image")->nullable();
-            $table->json("news_id")->default("[]");
+           
             $table->timestamps();
         });
     }
