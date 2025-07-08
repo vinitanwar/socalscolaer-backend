@@ -11,6 +11,7 @@ Route::get('/user', function (Request $request) {
 
 
 Route::get("/v1/getnews",[NewsController::class,"getallnews"]);
+Route::get("/v1/getnewspaginated",[NewsController::class,"getnewspaginated"]);
 Route::get("/v1/news/{slug}",[NewsController::class,"getnews"]);
 
 
@@ -18,6 +19,9 @@ Route::get("/v1/news/{slug}",[NewsController::class,"getnews"]);
 Route::get("/v1/getcategories",[NewsController::class,"getallcategories"]);
 Route::get("/v1/getallauthor",[NewsController::class,"getallauthor"]);
 Route::get("/v1/getauthor/{name}",[NewsController::class,"getauthor"]);
+Route::get("/v1/getbannernews",[NewsController::class,"getThreenews"]);
+Route::get("/v1/gettopviews",[NewsController::class,"gettopviews"]);
+Route::get("/v1/getlatest",[NewsController::class,"getlatest"]);
 
 
 

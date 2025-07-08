@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use App\Models\News;
 use App\Models\Newstype;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -68,6 +69,48 @@ return response()->json(["success"=>true,"author"=>$author]);
 
 }
 
+
+
+
+public function getThreenews(){
+$news = News::whereNotNull("numbering")->get();
+return response()->json(["success"=>true,"news"=>$news]);
+
+}
+
+public function gettopviews(){
+  $news = News::orderBy('views', 'desc')->take(9)->get();
+   return response()->json(["success"=>true,"news"=>$news]);
+
+
+  
+
+}
+
+public function getlatest(){
+$news = News::orderBy('created_at', 'desc')->take(20)->get();
+
+   return response()->json(["success"=>true,"news"=>$news]);
+
+
+  
+
+}
+
+public function getnewspaginated(Request $request)
+{
+    $filter = $request->query('data');
+
+    if ($filter === "All") {
+        $news = News::orderBy('created_at', 'desc')->paginate(3);
+    } else {
+        $news = News::where("news_type", $filter)
+                    ->orderBy('created_at', 'desc')
+                    ->paginate(3);
+    }
+
+    return response()->json(["success" => true, "news" => $news]);
+}
 
 
 

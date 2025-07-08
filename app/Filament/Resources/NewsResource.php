@@ -45,7 +45,6 @@
                                     FileUpload::make('image')
                                         ->label('Banner Image')
                                         ->image()
-                                        ->directory('news-images')
                                         ->imageEditor()
                                     
                                         ->imageResizeTargetWidth(1200)
@@ -88,16 +87,46 @@
                                         ->prefixIcon('heroicon-o-paper-airplane'),
                                 ]),
 
-FileUpload::make('allimages')
+
+                                Forms\Components\Grid::make(2)
+                                ->schema([
+                                    FileUpload::make('allimages')
                                         ->label('All Artical Image')
                                         ->image()
-                                        ->directory('news-images')
                                         ->imageEditor()
                                     
                                         ->imageResizeTargetWidth(1200)
                                         ->imageResizeTargetHeight(630)
                                         ->alignCenter()->multiple(),
-                            
+                                        
+                            Select::make('numbering')
+    ->label('Numbering')
+    ->options([
+        'first' => 'First',
+        'second' => 'Second',
+        'third' => 'Third',
+    ])
+    ->nullable()
+    ->reactive()
+    ->afterStateUpdated(function ($state, $set, $get, $livewire) {
+        if ($state) {
+            \App\Models\News::where('numbering', $state)
+                ->where('id', '!=', $get('id'))
+                ->update(['numbering' => null]);
+        }
+    }),
+                                ]),
+
+
+
+
+
+
+
+
+
+
+
 
                             Forms\Components\Section::make('Content Sections')
                                 ->description('Build your article with multiple sections')

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if(!Schema::hasTable("news")){
+    
              Schema::create('news', function (Blueprint $table) {
             $table->id();
             $table->string("title")->unique();
@@ -24,10 +24,12 @@ return new class extends Migration
             $table->integer("views")->default(0);
             $table->integer( "likes")->default(0);
              $table->json("des");
-            
+            $table->enum("numbering", ["first", "second", "third"])->nullable()->unique();
+            $table->json("allimages")->nullable();
+             $table->string('region')->nullable();
             $table->timestamps();
         });
-        }
+        
        
     }
 

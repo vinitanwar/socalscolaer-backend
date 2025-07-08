@@ -22,6 +22,7 @@ class News extends Model
         'des',
         "region",
         "allimages",
+        "numbering",
         
     ];
 
