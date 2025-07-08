@@ -1,0 +1,74 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Author;
+use App\Models\News;
+use App\Models\Newstype;
+use Illuminate\Http\Request;
+
+class NewsController extends Controller
+{
+
+    public function getallnews(Request $request){
+$filter = $request->query('data');
+if($filter=="All"){
+  $news= News::all();
+
+
+    return response()->json(["success"=>true,"news"=>$news]);
+}
+
+
+
+$news= News::where("news_type",$filter)->get();
+ return response()->json(["success"=>true,"news"=>$news]);
+
+    }
+    public function getnews(string $slug){
+     $news= News::where("slug",$slug)->first();
+     if(!$news){
+           return response()->json(["success"=>false,"message"=>"news not Found"]);
+
+     }
+     $news->views +=1;
+     $news->save();
+     return response()->json(["success"=>true,"news"=>$news]);
+    }
+
+
+
+public function getallcategories(){
+$categories= Newstype::all();
+return response()->json(["success"=>true,"categories"=>$categories]);
+}
+
+
+public function getallauthor(){
+$author= Author::all();
+if(!$author){
+   return response()->json(["success"=>false,"message"=>"Author Not Found"]); 
+}
+   return response()->json(["success"=>true,"author"=>$author]); 
+
+
+
+}
+
+
+public function getauthor(string $name){
+$author = Author::where("slug",$name)->first();
+if(!$author){
+return response()->json(["success"=>false,"message"=>"author not found"]);
+
+}
+
+return response()->json(["success"=>true,"author"=>$author]);
+
+
+}
+
+
+
+
+}
