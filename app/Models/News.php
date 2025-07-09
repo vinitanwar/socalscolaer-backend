@@ -23,6 +23,7 @@ class News extends Model
         "region",
         "allimages",
         "numbering",
+        "readingtime"
         
     ];
 

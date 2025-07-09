@@ -7,8 +7,11 @@ use App\Filament\Resources\AuthorResource\RelationManagers;
 use App\Models\Author;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -36,7 +39,7 @@ class AuthorResource extends Resource
                             ->schema([
                                 TextInput::make('name')
                                     ->required()
-                                    ->unique()
+                                    // ->unique()
                                     ->maxLength(255)
                                     ->columnSpan(2)
                                     ->prefixIcon('heroicon-o-user')
@@ -76,7 +79,42 @@ class AuthorResource extends Resource
                             ]),
                     ])
                     ->columns(1),
-            ]);
+                    Repeater::make('links')
+    ->schema([
+    Select::make('platform')
+        ->label('Platform')
+        ->options([
+            'instagram' => 'Instagram',
+            'whatsapp'  => 'WhatsApp',
+            'x'         => 'X (Twitter)',
+            'linkedin'  => 'LinkedIn',
+            'facebook'  => 'Facebook',
+        ])
+        ->required()
+        ->native(false)
+        ->columnSpan(1),
+
+    TextInput::make('url')
+        ->label('Profile URL')
+        ->url()
+        ->required()
+        ->prefix('https://')
+        ->columnSpan(1),
+])->columns(2)
+->label('Social Media Links')
+->addActionLabel('Add Link')
+->columnSpan('full')
+->nullable(),
+
+Toggle::make('showprofile')
+    ->label('Show Profile')
+    ->helperText('Enable to display this profile publicly.')
+    ->inline()
+    ->onColor('success')
+    ->offColor('danger')
+            ])
+            ;
+
     }
 
     public static function table(Table $table): Table

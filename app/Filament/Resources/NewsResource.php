@@ -64,13 +64,14 @@
 
                                     Select::make('editor')
                                         ->label('Author')
-                                        ->options(Author::pluck('name', 'name')->toArray())
+                                        ->options(['0' => 'No Author'] + Author::pluck('name', 'name')->toArray())
+
                                         ->searchable()
                                         ->nullable()
                                         ->placeholder('Select author...')
                                         ->prefixIcon('heroicon-o-user'),
                                 ]),
-                                Forms\Components\Grid::make(2)
+                                Forms\Components\Grid::make(3)
                                 ->schema([
                                     ColorPicker::make('color')
                                 ->label('Accent Color')
@@ -85,7 +86,10 @@
                                         ->nullable()
                                         ->placeholder('Select News Region...')
                                         ->prefixIcon('heroicon-o-paper-airplane'),
+                                        TextInput::make("readingtime")->label("Reading time")
+                                         ->placeholder('Reading time in minutes')->prefixIcon('heroicon-s-clock'),
                                 ]),
+
 
 
                                 Forms\Components\Grid::make(2)

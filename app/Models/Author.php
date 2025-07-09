@@ -15,7 +15,12 @@ class Author extends Model
         "about_author",
         "cv",
         "image",
-      
+      "showprofile",
+      "links",
+     ];
+
+     protected $casts=[
+      "links"=>"array"
      ];
 
 
