@@ -23,7 +23,26 @@ class InternshipResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('name')
+                    ->required()
+                    ->maxLength(255),
+                    
+                Forms\Components\TextInput::make('subject')
+                    ->maxLength(255),
+                    
+                Forms\Components\TextInput::make('email')
+                    ->email()
+                    ->required()
+                    ->maxLength(255),
+                    
+                Forms\Components\TextInput::make('phone')
+                    ->tel()
+                    ->required()
+                    ->maxLength(255),
+                    
+                Forms\Components\Textarea::make('message')
+                    ->required()
+                    ->columnSpanFull(),
             ]);
     }
 
@@ -35,10 +54,7 @@ class InternshipResource extends Resource
                     ->searchable()
                     ->sortable(),
                     
-                Tables\Columns\TextColumn::make('subject')
-                    ->searchable()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('subject'),
                     
                 Tables\Columns\TextColumn::make('email')
                     ->searchable()
@@ -48,17 +64,15 @@ class InternshipResource extends Resource
                     ->searchable()
                     ->sortable(),
                     
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('message')
+                    ,
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-            ])
+             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
@@ -77,8 +91,8 @@ class InternshipResource extends Resource
     {
         return [
             'index' => Pages\ListInternships::route('/'),
-            'create' => Pages\CreateInternship::route('/create'),
             'edit' => Pages\EditInternship::route('/{record}/edit'),
+            
         ];
     }
 }
