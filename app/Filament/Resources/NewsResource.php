@@ -202,6 +202,18 @@
                         ->color('gray')
                         ->searchable(),
 
+
+                      Tables\Columns\TextColumn::make('views')
+    ->label('Views Count')  // More descriptive label
+    ->numeric()  // Adds right alignment and proper number formatting
+    ->badge()
+    ->color(fn (string $state): string => match (true) {
+        $state > 1000 => 'success', 
+        $state > 500 => 'warning',   
+        default => 'danger',         
+    })
+   ,
+
                     Tables\Columns\TextColumn::make('des')
                         ->label('Sections')
                         ->badge()

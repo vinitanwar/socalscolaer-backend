@@ -19,15 +19,19 @@ class StatsOverview extends BaseWidget
                 ->descriptionIcon('heroicon-o-eye')
                 ->color('success'),
 
-            // Card::make('New Users This Month', User::whereMonth('created_at', now()->month)->count())
-            //     ->description('Growth this month')
-            //     ->descriptionIcon('heroicon-o-arrow-trending-up')
-            //     ->color('info'),
+                 Card::make('Total Artical Posted', \App\Models\News::count())
+                ->description('All Artical')
+                ->descriptionIcon('heroicon-o-newspaper')
+                ->color('danger'),
+                 Card::make('Total Blog Posted', \App\Models\Blog::count())
+                ->description('All Blog')
+                ->descriptionIcon('heroicon-o-bold')
+                ->color('warning'),
 
-            // Card::make('Pending Orders', \App\Models\News::all()->count())
-            //     ->description('Awaiting confirmation')
-            //     ->descriptionIcon('heroicon-o-clock')
-            //     ->color('warning'),
+
+            
+
+        
         ];
     }
 }
