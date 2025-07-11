@@ -103,14 +103,14 @@
 
                                 Forms\Components\Grid::make(2)
                                 ->schema([
-                                    FileUpload::make('allimages')
-                                        ->label('All Artical Image')
-                                        ->image()
-                                        ->imageEditor()
+                                    // FileUpload::make('allimages')
+                                    //     ->label('All Artical Image')
+                                    //     ->image()
+                                    //     ->imageEditor()
                                     
-                                        ->imageResizeTargetWidth(1200)
-                                        ->imageResizeTargetHeight(630)
-                                        ->alignCenter()->multiple(),
+                                    //     ->imageResizeTargetWidth(1200)
+                                    //     ->imageResizeTargetHeight(630)
+                                    //     ->alignCenter()->multiple(),
                                         
                             Select::make('numbering')
     ->label('Numbering')
