@@ -111,4 +111,9 @@ class NewsController extends Controller
             ->get();
         return response()->json(["success" => true, "news" => $news]);
     }
+
+    public function getInternational(){
+        $news = News::where("region",1)->take(9)->get();
+        return response()->json(["success" => true, "news" => $news]);
+    }
 }

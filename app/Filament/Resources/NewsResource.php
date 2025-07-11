@@ -166,7 +166,7 @@
                                             RichEditor::make('description')
                                                 ->label('Content')
                                                 ->required()
-                                                ->columnSpanFull()
+                                              ->columnSpan(1)
                                                 ->fileAttachmentsDirectory('news-attachments')
                                                 ->toolbarButtons([
                                                     'blockquote',
@@ -183,6 +183,12 @@
                                                     'underline',
                                                     'undo',
                                                 ]),
+
+                               FileUpload::make('img')->label("Select Image")
+                               ->image()->columnSpan(1)->multiple(),
+
+
+
                                         ])
                                         ->columns(2)
                                         ->grid(1),

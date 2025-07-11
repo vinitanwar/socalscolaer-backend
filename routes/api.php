@@ -22,8 +22,9 @@ Route::get("/v1/getauthor/{name}",[NewsController::class,"getauthor"]);
 Route::get("/v1/getbannernews",[NewsController::class,"getThreenews"]);
 Route::get("/v1/gettopviews",[NewsController::class,"gettopviews"]);
 Route::get("/v1/getlatest",[NewsController::class,"getlatest"]);
-Route::get("/v1/get-editor-artical",[NewsController::class,"getEditorArtical"]);
 
+Route::get("/v1/get-editor-artical",[NewsController::class,"getEditorArtical"]);
+Route::get("/v1/getinternational",[NewsController::class,"getInternational"]);
 
 
 
