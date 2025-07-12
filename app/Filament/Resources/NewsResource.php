@@ -43,13 +43,7 @@
                                         ->extraAttributes(['class' => 'bg-gray-50 dark:bg-gray-800']),
 
 
-                                        TextInput::make('slug')
-                                        ->required()
-                                        ->maxLength(255)
-                                        // ->columnSpan(1.5)
-                                        ->placeholder('Breaking News...')
-                                        ->prefixIcon('heroicon-o-newspaper')
-                                        ->extraAttributes(['class' => 'bg-gray-50 dark:bg-gray-800']),
+                                       
 
                                     FileUpload::make('image')
                                         ->label('Banner Image')
