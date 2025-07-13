@@ -33,9 +33,15 @@ class News extends Model
        
     ];
 
+public function setSlugAttribute($value){
+if($value){
+$this->attributes["slug"]=$value;
+}else{
+          $this->attributes['slug'] = time();
 
+}
+}
     public function setTitleAttribute($value){
       $this->attributes['title'] = $value;
-      $this->attributes['slug'] = time();
     }
 }

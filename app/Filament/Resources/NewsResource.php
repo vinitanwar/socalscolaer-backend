@@ -54,7 +54,8 @@
                                         ->label('Banner Image')
                                         ->image()
                                         ->imageEditor()
-                                    
+                                                                            ->required()
+
                                         ->imageResizeTargetWidth(1200)
                                         ->imageResizeTargetHeight(630)
                                         ->alignCenter(),
