@@ -13,6 +13,7 @@ protected $fillable=[
     "website",
     "message",
     "checked",
+    "slug",
 ];
 
 }

@@ -24,6 +24,7 @@ class BlogController extends Controller
 
 
     public function getblog(string $slug)
+
     {
         $blog = Blog::where("slug", $slug)->first();
         if (!$blog) {
@@ -39,6 +40,7 @@ class BlogController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'message' => 'required|string',
+             "slug"=>'required|string'
         ]);
 
         if ($validator->fails()) {
@@ -51,6 +53,7 @@ class BlogController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'message' => $request->message,
+            'slug' => $request->slug,
             'website' => $request->website ?? '',
         ]);
         return response()->json([
@@ -60,6 +63,19 @@ class BlogController extends Controller
         ], 201);
     }
 
+    public function getComments(String $slug){
+     
+     $comment= Comment::where("slug",$slug)->get();
+      if (!$comment) {
+            return response()->json(["success" => false]);
+        }
+
+
+        return response()->json(["success" => true, "blog" => $comment]);
+
+
+    }
+
     public function addInternship(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -67,6 +83,7 @@ class BlogController extends Controller
             'email' => 'required|email|max:255',
             'phone' => 'required|string',
             'message' => 'required|string',
+           
         ]);
 
         if ($validator->fails()) {
@@ -81,6 +98,7 @@ class BlogController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'message' => $request->message,
+        
             'subject' => $request->subject ?? '',
         ]);
         return response()->json([
