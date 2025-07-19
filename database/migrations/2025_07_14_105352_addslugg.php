@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('comments', function (Blueprint $table) {
+            if(!Schema::hasColumn("comments","slug")){
             $table->string("slug");
+
+            }
         });
     }
 

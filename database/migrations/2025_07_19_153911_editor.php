@@ -24,7 +24,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('news', function (Blueprint $table) {
-          
+           if (Schema::hasColumn('news', 'editortogal')) {
+                $table->dropColumn('editortogal');
+            }
         });
     }
 };
