@@ -7,7 +7,7 @@
     use App\Models\Author;
     use App\Models\Newstype;
     use Filament\Forms;
-    use Filament\Forms\Components\{TextInput,FileUpload,Select,ColorPicker,Repeater, RichEditor, Toggle};
+    use Filament\Forms\Components\{TextInput,FileUpload,Select,ColorPicker,Repeater, RichEditor, TagsInput, Toggle};
     use Filament\Forms\Form;
     use Filament\Tables;
     use Filament\Tables\Table;
@@ -59,6 +59,9 @@
                                         ->imageResizeTargetWidth(1200)
                                         ->imageResizeTargetHeight(630)
                                         ->alignCenter(),
+                                        TagsInput::make('tags'),
+
+
                                 ]),
 
                             Forms\Components\Grid::make(2)

@@ -24,13 +24,15 @@ class News extends Model
         "allimages",
         "numbering",
         "readingtime",
-        "editortogal"
+        "editortogal",
+        "tags"
         
     ];
 
     protected $casts = [
         'des' => 'array',
-        'allimages' => 'array'
+        'allimages' => 'array',
+        "tags"=>"array"
        
     ];
 

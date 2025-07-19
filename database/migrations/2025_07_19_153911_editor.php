@@ -15,6 +15,10 @@ return new class extends Migration
         if(!Schema::hasColumn("news","editortogal")){
               $table->boolean("editortogal")->default(false);
 }
+if(!Schema::hasColumn("news","tags")){
+                  $table->json("tags")->nullable();
+
+}
         });
     }
 
@@ -26,6 +30,9 @@ return new class extends Migration
         Schema::table('news', function (Blueprint $table) {
            if (Schema::hasColumn('news', 'editortogal')) {
                 $table->dropColumn('editortogal');
+            }
+             if (Schema::hasColumn('news', 'tags')) {
+                $table->dropColumn('tags');
             }
         });
     }
