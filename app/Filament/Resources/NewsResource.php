@@ -7,7 +7,7 @@
     use App\Models\Author;
     use App\Models\Newstype;
     use Filament\Forms;
-    use Filament\Forms\Components\{TextInput,FileUpload,Select,ColorPicker,Repeater, RichEditor};
+    use Filament\Forms\Components\{TextInput,FileUpload,Select,ColorPicker,Repeater, RichEditor, Toggle};
     use Filament\Forms\Form;
     use Filament\Tables;
     use Filament\Tables\Table;
@@ -128,7 +128,10 @@
                 ->update(['numbering' => null]);
         }
     }),
-                                ]),
+    Toggle::make('editortogal')->label("Editor"),
+                            
+]),
+
 
 
 

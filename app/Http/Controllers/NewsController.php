@@ -105,9 +105,8 @@ class NewsController extends Controller
     public function getEditorArtical()
     {
 
-        $news = News::where("editor", '!=', "0")
+        $news = News::where("editortogal", 1)
             ->orderBy('created_at', 'desc')
-            ->take(20)
             ->get();
         return response()->json(["success" => true, "news" => $news]);
     }
