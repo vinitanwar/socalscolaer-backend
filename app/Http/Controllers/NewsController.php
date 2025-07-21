@@ -15,7 +15,7 @@ class NewsController extends Controller
     {
         $filter = $request->query('data');
         if ($filter == "All") {
-            $news = News::all();
+            $news = News::orderBy('created_at', 'desc')->get();
 
 
             return response()->json(["success" => true, "news" => $news]);
@@ -23,7 +23,7 @@ class NewsController extends Controller
 
 
 
-        $news = News::where("news_type", $filter)->get();
+        $news = News::where("news_type", $filter)->orderBy('created_at', 'desc')->get();
         return response()->json(["success" => true, "news" => $news]);
     }
     public function getnews(string $slug)
