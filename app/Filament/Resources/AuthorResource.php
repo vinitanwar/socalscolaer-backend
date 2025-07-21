@@ -75,10 +75,39 @@ class AuthorResource extends Resource
                                     ->openable()
                                     ->downloadable()
                                     ->helperText('Maximum file size: 5MB')
-                                    ->columnSpanFull(),
-                            ]),
+                                      ->columnSpan(1),
+
+Select::make('status')
+    ->options([
+        'editor' => 'Editor',
+        'author' => 'Author',
+        'advisory' => 'Advisory',
+    ]) ->native(false) 
+    ->selectablePlaceholder(false)
+    ->prefixIcon('heroicon-o-user-circle')
+    ->helperText('Select the user role')
+    ->required()
+  
+   ,
+  Toggle::make('inboard')
+    ->label('Show In Board')
+    ->inline()
+    ->onColor('success')
+    ->offColor('danger')
+    ->onIcon('heroicon-o-check-circle')
+    ->offIcon('heroicon-o-x-circle')
+    ->hint('Toggle to show/hide in the board view')
+    ->hintIcon('heroicon-o-information-circle')
+    ->hintColor('primary')
+    ->extraAttributes([
+        'class' => 'rounded-full shadow-sm',
+    ])
+
+
+
+                            ]) ->columns(3),
                     ])
-                    ->columns(1),
+                    ->columns(3),
                     Repeater::make('links')
     ->schema([
     Select::make('platform')

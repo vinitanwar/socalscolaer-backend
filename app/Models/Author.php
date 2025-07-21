@@ -17,6 +17,8 @@ class Author extends Model
         "image",
       "showprofile",
       "links",
+      "author_type",
+      "inboard"
      ];
 
      protected $casts=[
