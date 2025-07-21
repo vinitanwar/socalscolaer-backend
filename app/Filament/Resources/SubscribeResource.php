@@ -10,6 +10,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -34,7 +35,8 @@ class SubscribeResource extends Resource
             ->columns([
                 TextColumn::make('email')])
             ->filters([
-                //
+                 Filter::make('Created Today')
+        ->query(fn ($query) => $query->whereDate('created_at', now()->toDateString())),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
