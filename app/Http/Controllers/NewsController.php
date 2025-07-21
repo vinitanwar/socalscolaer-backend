@@ -62,8 +62,9 @@ class NewsController extends Controller
         if (!$author) {
             return response()->json(["success" => false, "message" => "author not found"]);
         }
+        $news= News::where("editor",$author["name"])->get();
 
-        return response()->json(["success" => true, "author" => $author]);
+        return response()->json(["success" => true, "author" => $author,"news"=>$news]);
     }
 
 
