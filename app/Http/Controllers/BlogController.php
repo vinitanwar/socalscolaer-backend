@@ -118,20 +118,19 @@ class BlogController extends Controller
     if ($validator->fails()) {
         return response()->json([
             'success' => false,
-            'message' => 'Validation failed',
-            'errors' => $validator->errors()
-        ], 422);
+            'message' => $validator->errors()->first(),
+            
+        ], );
     }
 
-    try {
-        // Check if email already exists
+  
         $existingSubscription = Subscribe::where('email', $request->email)->first();
         
         if ($existingSubscription) {
             return response()->json([
                 'success' => false,
                 'message' => 'This email is already subscribed'
-            ], 409); // 409 Conflict status code
+            ], ); // 409 Conflict status code
         }
 
         // Create new subscription
@@ -143,14 +142,7 @@ class BlogController extends Controller
             'success' => true,
             'message' => 'Thank you for subscribing!',
             'data' => $subscribe
-        ], 201); // 201 Created status code
-
-    } catch (\Exception $e) {
-        return response()->json([
-            'success' => false,
-            'message' => 'Subscription failed',
-            'error' => $e->getMessage()
-        ], 500);
-    }
+        ], 201); 
+  
 }
 }
