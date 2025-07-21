@@ -113,7 +113,8 @@ class NewsController extends Controller
     }
 
     public function getInternational(){
-        $news = News::where("region",1)->take(9)->get();
+        $news = News::where("region",1)->take(9)->orderBy('created_at', 'desc')->get();
         return response()->json(["success" => true, "news" => $news]);
     }
+    
 }

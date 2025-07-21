@@ -37,3 +37,4 @@ Route::controller(BlogController::class)->prefix("/v1/blog")->group(function(){
 Route::post("/v1/addcomment",[BlogController::class,"addComment"]);
 Route::post("/v1/internship",[BlogController::class,"addInternship"]);
 Route::get("/v1/comment/{slug}",[BlogController::class,"getComments"]);
+Route::post("/v1/addsubscribe",[BlogController::class,"addSubscribe"]);

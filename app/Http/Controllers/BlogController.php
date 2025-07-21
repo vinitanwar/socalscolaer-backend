@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Models\Comment;
 use App\Models\Internship;
+use App\Models\Subscribe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -107,4 +108,49 @@ class BlogController extends Controller
 
         ], 201);
     }
+
+   public function addSubscribe(Request $request){
+    // Validate the request
+    $validator = Validator::make($request->all(), [
+        'email' => 'required|email|max:255'
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Validation failed',
+            'errors' => $validator->errors()
+        ], 422);
+    }
+
+    try {
+        // Check if email already exists
+        $existingSubscription = Subscribe::where('email', $request->email)->first();
+        
+        if ($existingSubscription) {
+            return response()->json([
+                'success' => false,
+                'message' => 'This email is already subscribed'
+            ], 409); // 409 Conflict status code
+        }
+
+        // Create new subscription
+        $subscribe = Subscribe::create([
+            'email' => $request->email,
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Thank you for subscribing!',
+            'data' => $subscribe
+        ], 201); // 201 Created status code
+
+    } catch (\Exception $e) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Subscription failed',
+            'error' => $e->getMessage()
+        ], 500);
+    }
+}
 }

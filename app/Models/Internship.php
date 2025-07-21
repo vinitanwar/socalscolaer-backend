@@ -8,7 +8,7 @@ class Internship extends Model
 {
   protected $table="internships";
   protected $fillable=[
-"name",
+"name", 
 "subject",
 "email",
 "phone",
