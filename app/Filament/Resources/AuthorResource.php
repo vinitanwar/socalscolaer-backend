@@ -77,7 +77,7 @@ class AuthorResource extends Resource
                                     ->helperText('Maximum file size: 5MB')
                                       ->columnSpan(1),
 
-Select::make('status')
+Select::make('author_type')->label("Type")
     ->options([
         'editor' => 'Editor',
         'author' => 'Author',
