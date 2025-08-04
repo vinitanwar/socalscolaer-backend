@@ -29,6 +29,12 @@ class StatsOverview extends BaseWidget
                 ->color('warning'),
 
 
+                 Card::make('Total Views ', \App\Models\News::sum("views") )
+                ->description('All Views')
+                ->descriptionIcon('heroicon-o-eye')
+                ->color('primary'),
+
+
             
 
         
